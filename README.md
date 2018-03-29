@@ -137,4 +137,4 @@ I finally randomly shuffled the data set and put **20**% of the data into a vali
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as after 3rd epoch the model started oscillating around 0.014% training loss. Also, I used an Adam optimizer so that manually training the learning rate wasn't necessary.
 
 ### Simulation
-The output.mp4 video shows the working of my architecture. Here for every frame the simulator sends the center camera images to the model in backend to get the steering angle which is determined in real-time by processing the image and passing it through the network.
+The output.mp4 video shows the working of my architecture. Here for every frame the simulator sends the center camera image to the model in backend to get the steering angle which is determined in real-time by processing the image and passing it through the network.
