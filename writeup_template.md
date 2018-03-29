@@ -9,13 +9,15 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./examples/center_1.jpg "Centre Image 1"
+[image2]: ./examples/center_2.jpg "Centre Image 2"
+[image3]: ./examples/center_3.jpg "Centre Image 3"
+[image4]: ./examples/center_4.jpg "Centre Image 4"
+[image5]: ./examples/center_5.jpg "Centre Image 5"
+[image6]: ./examples/center_6.jpg "Centre Image 6"
+[image7]: ./examples/recovery_1.jpg "Recovery Image 1"
+[image8]: ./examples/recovery_2.jpg "Recovery Image 2"
+[image9]: ./examples/recovery_3.jpg "Recovery Image 3"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -84,7 +86,7 @@ Then I tried NVEDIA architecture. In that architecture I cropped and downscaled 
 
 To combat the overfitting, I modified the model by removing some Convolution Layers and Fully Connected Layers.
 
-After changing the model architecture and training the model for 3 epochs, I finally got the training loss as 0.01% and validation loss of 0.011%
+After changing the model architecture and training the model for 3 epochs, I finally got the training loss as 0.0146% and validation loss of 0.0117%
 
 The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track. To improve the driving behavior in these cases, I augmented the data by flipping the images taken by centre camera, adding more images in the traning set from taken from left and right cameras with steering angle correction.
 
@@ -99,3 +101,31 @@ The final model architecture (model.py lines 99-120) consisted of 2 Convolution 
  - **Dense Layer 1** - 32
  - **Dense Layer 2** - 16
  - **Dense Layer 3** - 1
+
+
+#### 3. Creation of the Training Set & Training Process
+
+To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+
+![alt text][image1]
+![alt text][image2]
+![alt text][image3]
+![alt text][image4]
+![alt text][image5]
+![alt text][image6]
+
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to keep itself in middle of road on steep turns. These images show what a recovery looks like starting from ... :
+
+![alt text][image7]
+![alt text][image8]
+![alt text][image9]
+
+To augment the data sat, I also flipped images and angles thinking that this would help the car to stay in middle of the roads while turning.
+Also, I used left and right camera images to train the network by correcting the steering angle by +- 0.20 degree.
+
+After the collection process, I had 25712 number of data points. I then preprocessed this data by converting the color scheme from BGR to RGB(since cv2 reads the image in BGR color scheme and simulator sends images in RGB format). 
+
+
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
+
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I used an adam optimizer so that manually training the learning rate wasn't necessary.
