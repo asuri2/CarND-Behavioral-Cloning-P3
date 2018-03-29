@@ -103,7 +103,7 @@ The final model architecture (model.py lines 99-120) consisted of 2 Convolution 
  - **Flatten Layer** 
  - **Dense Layer 1** - 32
  - **Dense Layer 2** - 16
- - **Output Layer ** - 1
+ - **Output Layer** - 1
 
 
 Here is a visualization of my architecture:
