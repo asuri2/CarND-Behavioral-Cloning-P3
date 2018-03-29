@@ -139,6 +139,5 @@ I used this training data for training the model. The validation set helped dete
 ### Simulation
 The output.mp4 video shows the working of my architecture. Here for every frame the simulator sends the center camera image to the model in backend to get the steering angle which is determined in real-time by processing the image and passing it through the network.
 
-```
-[![Watch the video](https://pmcvariety.files.wordpress.com/2017/09/youtube-logo.png)](https://www.youtube.com/watch?v=ezA0tZGjVmo&t=8s)
-```
+<a href="https://www.youtube.com/watch?v=ezA0tZGjVmo&" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
+alt="Final Output Video" width="240" height="180" border="10" /></a>
