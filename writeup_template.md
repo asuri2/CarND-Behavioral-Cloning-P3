@@ -18,6 +18,7 @@ The goals / steps of this project are the following:
 [image7]: ./examples/recovery_1.jpg "Recovery Image 1"
 [image8]: ./examples/recovery_2.jpg "Recovery Image 2"
 [image9]: ./examples/recovery_3.jpg "Recovery Image 3"
+[image10]: ./examples/model_architecture.png "Model Architecture"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -103,6 +104,10 @@ The final model architecture (model.py lines 99-120) consisted of 2 Convolution 
  - **Dense Layer 3** - 1
 
 
+Here is a visualization of my architecture:
+
+![alt text][image10]
+
 #### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
@@ -114,7 +119,7 @@ To capture good driving behavior, I first recorded two laps on track one using c
 ![alt text][image5]
 ![alt text][image6]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to keep itself in middle of road on steep turns. These images show what a recovery looks like starting from ... :
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to keep itself in middle of road on steep turns. These images show what a recovery looks like.
 
 ![alt text][image7]
 ![alt text][image8]
@@ -123,9 +128,8 @@ I then recorded the vehicle recovering from the left side and right sides of the
 To augment the data sat, I also flipped images and angles thinking that this would help the car to stay in middle of the roads while turning.
 Also, I used left and right camera images to train the network by correcting the steering angle by +- 0.20 degree.
 
-After the collection process, I had 25712 number of data points. I then preprocessed this data by converting the color scheme from BGR to RGB(since cv2 reads the image in BGR color scheme and simulator sends images in RGB format). 
-
+After the collection process, I had 25712 number of data points. I then preprocessed this data by converting the color scheme from BGR to RGB(since cv2 reads the image in BGR color scheme and simulator sends images in RGB format). Then I cropped and recscaled the image to get the final image shape as 32, 80, 3. This helped in training the model faster.
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as after 3rd epoch the model started oscillaiting around 0.014% training loss. Also, I used an adam optimizer so that manually training the learning rate wasn't necessary.
