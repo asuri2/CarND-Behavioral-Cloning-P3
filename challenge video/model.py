@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 lines = []
 
 #load csv file
-with open('./data/driving_log.csv') as csvfile:
+with open('./../data/driving_log.csv') as csvfile:
     reader = csv.reader(csvfile)
     for line in reader:
         lines.append(line)
@@ -27,7 +27,7 @@ def generator_images(data, batchSize = 32):
             y_batch = []
             details = data[i: i+int(batchSize/4)]
             for line in details:
-                image = crop_and_resize_change_color_space(cv2.imread('./data/IMG/'+ line[0].split('/')[-1]))
+                image = crop_and_resize_change_color_space(cv2.imread('./../data/IMG/'+ line[0].split('/')[-1]))
                 steering_angle = float(line[3])
                 #appending original image
                 X_batch.append(image)
@@ -36,10 +36,10 @@ def generator_images(data, batchSize = 32):
                 X_batch.append(np.fliplr(image))
                 y_batch.append(-steering_angle)
                 # appending left camera image and steering angle with offset
-                X_batch.append(crop_and_resize_change_color_space(cv2.imread('./data/IMG/'+ line[1].split('/')[-1])))
+                X_batch.append(crop_and_resize_change_color_space(cv2.imread('./../data/IMG/'+ line[1].split('/')[-1])))
                 y_batch.append(steering_angle+0.4)
                 # appending right camera image and steering angle with offset
-                X_batch.append(crop_and_resize_change_color_space(cv2.imread('./data/IMG/'+ line[2].split('/')[-1])))
+                X_batch.append(crop_and_resize_change_color_space(cv2.imread('./../data/IMG/'+ line[2].split('/')[-1])))
                 y_batch.append(steering_angle-0.3)
             # converting to numpy array
             X_batch = np.array(X_batch)
